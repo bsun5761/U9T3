@@ -21,9 +21,9 @@ public class Vehicle
     return tollFee;
   }
 
-  public void setTollFee(double fee)
+  public void setTollFee(double newValue)
   {
-    tollFee =  tollFee*(fee+1);
+    tollFee = newValue;
   }
 
   public int getPassengers()
@@ -31,13 +31,19 @@ public class Vehicle
     return passengers;
   }
 
-  public void setPassengers(int num)
+  public void setPassengers(int newValue)
   {
-    passengers = passengers-num;
+    passengers = newValue;
   }
-  
+
   public double calculateTollPrice()
   {
     return tollFee * passengers;
+  }
+
+
+  public void printInfo()
+  {
+    System.out.println("License plate:" + getLicensePlate() + "Toll fee:" + getTollFee() + "Passengers:"+ getPassengers());
   }
 }

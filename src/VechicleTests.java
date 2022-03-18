@@ -2,61 +2,41 @@ public class VechicleTests
 {
   public static void main(String[] args)
   {
-    // -------------- LAB PART 1 -----------------
-    // a. write code to create a Vehicle object with license "MC56WQ",
-    //    toll fee of 10.75, and 5 passengers.
-    //    Print out the calculated toll TollPrice.
-    Vehicle a = new Vehicle("MC56WQ", 10.75, 5);
-    System.out.println(a.calculateTollPrice());
+    Car myCar = new Car("MK4567", 10.0, 3, true);
+    System.out.println(myCar.calculateTollPrice());
 
-    // b. write code to create an electric Car with license "KXN73F",
-    //    toll fee of 8.50, and 2 passengers.
-    //    Print out the calculated toll price
-    Car b = new Car("KXN73F", 8.5, 2, true);
-    System.out.println(b.calculateTollPrice());
+    Car myCar2 = new Car("FJ8731", 10.0, 6, true);
+    System.out.println(myCar2.calculateTollPrice());
 
-    // c. add a printCar() void method to the Car class that prints the
-    //    Car's license plate, toll fee, number of passengers, whether it is electric,
-    //    and whether a discount has been applied.
-    //    Add getter methods as necessary to the Vehicle superclass.
+    // the way toll price is calculated for a Vehicle
+    // shouldn't have changed
+    Vehicle myVehicle = new Vehicle("KX1543", 10.0, 6);
+    System.out.println(myVehicle.calculateTollPrice());
+
     //
-    // d. call the method on the Car you made in b to test it.
-    b.printCar();
 
 
+    Truck myTruck = new Truck("TY45LX", 20.0, 3, 5, true);
+    System.out.println(myTruck.calculateTollPrice());
 
+    Truck myTruck2 = new Truck("LM90LX", 20.0, 3, 5, false);
+    System.out.println(myTruck2.calculateTollPrice());
 
+    // the way toll price is calculated for a Vehicle
+    // shouldn't have changed
+    Vehicle myVehicle2 = new Vehicle("TR987", 10.0, 6);
+    System.out.println(myVehicle2.calculateTollPrice());
 
-
-    // e. write code to create a Truck with license "3K9JMX",
-    //    a toll fee of 24.75, 4 passengers, 6 axles, with a trailer.
-    //    Print out the calculated toll price
-    Truck c = new Truck("3K9JMX", 24.75, 4, 6, true);
-    System.out.println(c.calculateTollPrice());
-
-    // f. add a printTruck() void method to the Truck class that prints the
-    //    Truck's license plate, toll fee, number of passengers, number of axles,
-    //    and whether it has a trailer.
-    //    Add getter methods as necessary to the Vehicle superclass.
     //
-    // g. call the method on the Truck you made in e to test it.
-    c.printTruck();
 
+    Taxi myTaxi3 = new Taxi("TX1234", 10.0, 6, true, 0.0);
+    System.out.println(myTaxi3.getPassengers()); // should be 6, including driver
 
-
-    // ------------ LAB PART 2 ---------------
-    // ----- instructions in lab sheet -------
-    Taxi d = new Taxi("!@#$%", 2.54, 2, true, 4);
-    d.printTaxi();
-    System.out.println(d instanceof Taxi);
-    System.out.println(d instanceof Car);
-    System.out.println(d instanceof Vehicle);
-
-
-    // ------------ LAB PART 3 ---------------
-    // ----- instructions in lab sheet -------
-
-    
+    // now let's drop off the 5 riders, charging 3.50 per rider
+    boolean success = myTaxi3.chargeAndDropOffRiders(3.50);
+    System.out.println(success); // should be true
+    System.out.println(myTaxi3.getPassengers()); // should now be 1
+    System.out.println(myTaxi3.getFareCollected()); // should be 17.50
 
   }
 }

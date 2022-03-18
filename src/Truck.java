@@ -10,32 +10,47 @@ public class Truck extends Vehicle
     this.hasTrailer = hasTrailer;
   }
 
-  public void printTruck() {
-    System.out.println("License Plate: " + getLicensePlate());
-    System.out.println("Toll Fee: " + getTollFee());
-    System.out.println("Passengers: " + getPassengers());
-    System.out.println("Axles: " + axles);
-    System.out.println("Has Trailer: " + hasTrailer);
-  }
-
-  public boolean validateLicensePlate()
+  public void printTruck()
   {
-    boolean h=false;
-    if(hasTrailer=true&&axles>4)
+    // print the truck's license plate, toll fee, number of passengers, axles,
+    // and whether it has a trailer
+    @Override
+    public void printInfo()
     {
-      if(getLicensePlate().contains("MX"))
-      {
-        h=true;
-      }
+      super.printInfo();
+      System.out.println("Number of axles: " + axles);
+      System.out.println("Has trailer? " + hasTrailer);
     }
-    else if(hasTrailer=true&&axles<4)
+
+
+  public boolean validateLicensePlate() {
+    // check if truck has a trailer
+    if (hasTrailer) {
+      // get license plate
+      String licensePlate = getLicensePlate();
+
+      // get last two characters
+      String lastTwoChars = licensePlate.substring(licensePlate.length() - 2);
+
+      // confirm MX if axles > 4 or LX if axles <= 4
+      boolean isValid = (lastTwoChars.equals("MX") && axles > 4) || (lastTwoChars.equals("LX") && axles <= 4);
+      return isValid;
+    } else  // trucks without trailers automatically return true
     {
-      if(getLicensePlate().contains("LX"))
-      {
-        h=true;
-      }
+      return true;
     }
-    return false;
   }
 
+  @java.lang.Override
+  public double calculateTollPrice() {
+    if(hasTrailer=false)
+    {
+      return getTollFee()*axles;
+    }
+    else
+    {
+      return getTollFee()*2;
+
+    }
+  }
 }
